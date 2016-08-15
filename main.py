@@ -16,13 +16,13 @@ print "This script automates the tedious task of installing the metasploit-frame
       "on Mac OSX. You can look at the source code here --> https://github.com/thecarterb/msf4osx/blob/master/main.py"
 print "\n"
 
-print "\033[1;31;40m NOTE: WHEN A PASSWORD PROMPT APPEARS, YOU MUST TYPE IN YOUR PASSWORD \033[0m "
+print "\033[0;31;0m NOTE: WHEN A PASSWORD PROMPT APPEARS, YOU MUST TYPE IN YOUR PASSWORD \033[0m "
 print "\n\n"
 
 msfdbFile = "/usr/local/share/metasploit-framework/config/database.yml"
 # defines ANSI escape codes for green text in the terminal
-greenTextEscIn = "\033[1;32;40m"
-greenTextEscOut = "\033[0m 1;32;40m"
+greenTextEscIn = "\033[1;32;0m"
+greenTextEscOut = "\033[0m 1;32;0m"
 endingText = "You're all set up! just type --> \"./metasploit-framework/msfconsole\" (without quotes in " \
              "the terminal to fire up metasploit!"
 
@@ -51,12 +51,13 @@ if osType != "Windows":
         print greenTextEscIn, "Installing nmap... (Prerequisite for metasploit)", greenTextEscOut
         os.system("brew install nmap")
         print "\n\n"
+        os.system("cd /")
         print greenTextEscIn, "Fetching latest version of metasploit from GitHub...", greenTextEscOut
         os.system("git clone https://github.com/rapid7/metasploit-framework -v")
         print "\n\n"
-        os.system("cd metasploit-framework")
+        os.system("cd //metasploit-framework")
         print greenTextEscIn, "Getting bundler and installing proper ruby gems...", greenTextEscOut
-        os.system("sudo gem install bundler")
+        os.system("gem install bundler")
         os.system("bundle install")
 
         tempInput = input()
