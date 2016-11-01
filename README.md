@@ -1,7 +1,10 @@
-# msf4osx
-Metasploit is usually intended to be run on a Linux system, but installing it on OS X is a huge pain in the ass. This makes it easier on you.
-For this to run _properly_ , you should run it as root so everything installs correctly,
+###Requirements
+1. OS X
+2. [brew package manager](brew.sh)
 
-so type: `sudo python msf4osx.py` to start the script.
+###Installation
 
-Have fun with Metasploit :)
+1. `git clone https://github.com/thecarterb/msf4osx.git`
+2. `cd msf4osx`
+3. `chmod 777 msf4osx`
+4. `./msf4osx`
