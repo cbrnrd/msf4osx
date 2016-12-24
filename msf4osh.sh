@@ -3,15 +3,17 @@
 #Author: Carter Brainerd (https://github.com/thecarterb)
 
 if ["$(id -u)" = "0"]; then
-  echo "DO NOT RUN THE SCRIPT AS ROOT UNLESS YOU ALWAYS INTEND\nTO USE METASPLOIT AS ROOT"
+  echo "Please run script as a non-root user"
+  exit $?
 fi
 echo \" ""__  __  _____ ______ _  _    ____   _______   __\n"
-          "|  \/  |/ ____|  ____| || |  / __ \ / ____\ \ / /\n"
-          "| \  / | (___ | |__  | || |_| |  | | (___  \ V /\n"
-          "| |\/| |\___ \|  __| |__   _| |  | |\___ \  > < \n"
-          "| |  | |____) | |       | | | |__| |____) |/ . \ \n"
-          "|_|  |_|_____/|_|       |_|  \____/|_____//_/ \_\ \n\"
-echo "\n\n"
+echo          "|  \/  |/ ____|  ____| || |  / __ \ / ____\ \ / /\n"
+echo          "| \  / | (___ | |__  | || |_| |  | | (___  \ V /\n"
+echo          "| |\/| |\___ \|  __| |__   _| |  | |\___ \  > < \n"
+echo          "| |  | |____) | |       | | | |__| |____) |/ . \ \n"
+echo          "|_|  |_|_____/|_|       |_|  \____/|_____//_/ \_\ \n\"
+echo ""
+echo ""
 echo "This script automates the tedious task of installing the metasploit-framework"
 echo "on Mac OSX. You can look at the source code here --> https://github.com/thecarterb/msf4osx"
 
