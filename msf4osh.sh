@@ -23,7 +23,7 @@ GREENIN="\033[0;32m"
 GREENOUT="\033[0m"
 ENDTEXT="You're all set up! justetype --> \"./metasploit-framework/msfconsole\" (without quotes in the terminal to fire up metasploit!"
 
-msfdsetup ()
+function msfdsetup ()
 {
     echo 'production:' >> $MSFDFILE
     echo ' adapter: postgresql' >> $MSFDFILE
@@ -41,7 +41,7 @@ if [ `uname` == "Darwin" ]; then
 fi
 
 #function to install dependencies
-installmsf ()
+function installmsf ()
 {
   echo -e "${GREENIN} Installing brew package manager...${GREENOUT}"
   /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"
