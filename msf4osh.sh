@@ -36,10 +36,6 @@ function msfdsetup ()
     echo ' timeout: 5' >> $MSFDFILE
 }
 
-if [ `uname` == "Darwin" ]; then
-  installmsf
-fi
-
 #function to install dependencies
 function installmsf ()
 {
@@ -82,3 +78,7 @@ function installmsf ()
   echo -e "${ENDTEXT}"
 
 }
+
+if [ `uname` == "Darwin" ]; then
+  installmsf
+fi
