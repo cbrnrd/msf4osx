@@ -40,7 +40,7 @@ function msfdsetup ()
 function installmsf ()
 {
   echo -e "${GREENIN} Installing brew package manager...${GREENOUT}"
-  /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   echo -e "${GREENIN} Installing git...${GREENOUT}"
   brew install git
   echo -e "${GREENIN} Installing the latest version of ruby...${GREENOUT}"
