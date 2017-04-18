@@ -18,12 +18,12 @@ echo "This script automates the tedious task of installing the metasploit-framew
 echo "on Mac OSX. You can look at the source code here --> https://github.com/thecarterb/msf4osx"
 
 #globals
-MSFDFILE = "/usr/local/share/metasploit-framework/config/database.yml"
-GREENIN = "\033[1;32;0m"
-GREENOUT = "\033[0m 1;32;0m"
-ENDTEXT = "You're all set up! just type --> \"./metasploit-framework/msfconsole\" (without quotes in " \
+MSFDFILE="/usr/local/share/metasploit-framework/config/database.yml"
+GREENIN="\033[1;32;0m"
+GREENOUT="\033[0m 1;32;0m"
+ENDTEXT="You're all set up! justetype --> \"./metasploit-framework/msfconsole\" (without quotes in " \
              "the terminal to fire up metasploit!"
-UNAME = uname
+UNAME=`uname`
 
 msfdsetup ()
 {
@@ -38,24 +38,24 @@ msfdsetup ()
     echo ' timeout: 5' >> $MSFDFILE
 }
 
-if [$UNAME = "Darwin"]; then
+if [$UNAME == "Darwin"]; then
   install
 fi
 
 #function to install dependencies
 install ()
 {
-  echo $GREENIN"Installing brew package manager..."$GREENOUT
+  echo -e "${GREENIN} Installing brew package manager...${GREENOUT}"
   /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"
-  echo $GREENIN"Installing git..."$GREENOUT
+  echo -e "${GREENIN} Installing git...${GREENOUT}"
   brew install git
-  echo $GREENIN"Installing the latest version of ruby..."$GREENOUT
+  echo -e "${GREENIN} Installing the latest version of ruby...${GREENOUT}"
   brew install ruby
-  echo $GREENIN"Installing nmap..."$GREENOUT
+  echo -e "${GREENIN} Installing nmap...${GREENOUT}"
   brew install nmap
-  echo $GREENIN"Installing bindler ruby gem..."$GREENOUT
+  echo -e "${GREENIN} Installing bindler ruby gem...${GREENOUT}"
   gem install bundler
-  echo $GREENIN"Installing postgresql..."$GREENOUT
+  echo -e "${GREENIN} Installing postgresql...${GREENOUT}"
   brew install postgresql --without-ossp-uuid
   initdb /usr/local/var/postgres
   mkdir -p ~/Library/LaunchAgents
@@ -65,7 +65,7 @@ install ()
   createuser msf -P -h localhost
   createdb -O msf msf -h localhost
 
-  echo $GREENIN"Cloning the metasploit-framework..."$GREENOUT
+  echo -e "${GREENIN} Cloning the metasploit-framework...${GREENOUT}"
   cd /usr/local/share
   git clone https://github.com/rapid7/metasploit-framework
   cd metasploit-framework
@@ -81,6 +81,6 @@ install ()
   source /etc/profile
   source ~/.bash_profile
 
-  echo $ENDTEXT
+  echo -e "${ENDTEXT}"
 
 }
