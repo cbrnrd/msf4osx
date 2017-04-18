@@ -2,7 +2,7 @@
 
 #Author: Carter Brainerd (https://github.com/thecarterb)
 
-if ["$(id -u)" = "0"]; then
+if [ "$(id -u)" == "0" ]; then
   echo "Please run script as a non-root user"
   exit $?
 fi
@@ -21,11 +21,19 @@ echo "on Mac OSX. You can look at the source code here --> https://github.com/th
 MSFDFILE="/usr/local/share/metasploit-framework/config/database.yml"
 GREENIN="\033[0;32m"
 GREENOUT="\033[0m"
-ENDTEXT="You're all set up! justetype --> \"./metasploit-framework/msfconsole\" (without quotes in the terminal to fire up metasploit!"
+ENDTEXT="You're all set up! just type --> ./msfconsole in the terminal to fire up metasploit!"
 
 function msfdsetup ()
 {
-    ./opt/metasploit-framework/msfdb
+    echo 'production:' >> $MSFDFILE
+    echo ' adapter: postgresql' >> $MSFDFILE
+    echo ' database: msf' >> $MSFDFILE
+    echo ' username: msf' >> $MSFDFILE
+    echo ' password: ' >> $MSFDFILE
+    echo ' host: 127.0.0.1' >> $MSFDFILE
+    echo ' port: 5432' >> $MSFDFILE
+    echo ' pool: 75' >> $MSFDFILE
+    echo ' timeout: 5' >> $MSFDFILE
 }
 
 #function to install dependencies
@@ -45,19 +53,16 @@ function installmsf ()
   brew install postgresql --without-ossp-uuid
   initdb /usr/local/var/postgres
   mkdir -p ~/Library/LaunchAgents
-  cp /usr/local/Cellar/postgresql/9.4.4/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
+  cp /usr/local/Cellar/postgresql/9.5.4_1/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
   launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
   pg_ctl -D /usr/local/var/postgres start
   createuser msf -P -h localhost
   createdb -O msf msf -h localhost
 
   echo -e "${GREENIN} Cloning the metasploit-framework...${GREENOUT}"
-  cd /opt
+  cd /usr/local/share
   git clone https://github.com/rapid7/metasploit-framework
   cd metasploit-framework
-  git clone https://github.com/thecarterb/msfdb-copy
-  mv msfdb-copy/msfdb .
-  rm -rf msfdb-copy
   for MSF in $(ls msf*); do ln -s /usr/local/share/metasploit-framework/$MSF /usr/local/bin/$MSF;done
   sudo chmod go+w /etc/profile
   sudo echo export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml >> /etc/profile
