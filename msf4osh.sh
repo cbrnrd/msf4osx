@@ -25,15 +25,7 @@ ENDTEXT="You're all set up! justetype --> \"./metasploit-framework/msfconsole\" 
 
 function msfdsetup ()
 {
-    echo 'production:' >> $MSFDFILE
-    echo ' adapter: postgresql' >> $MSFDFILE
-    echo ' database: msf' >> $MSFDFILE
-    echo ' username: msf' >> $MSFDFILE
-    echo ' password: ' >> $MSFDFILE
-    echo ' host: 127.0.0.1' >> $MSFDFILE
-    echo ' port: 5432' >> $MSFDFILE
-    echo ' pool: 75' >> $MSFDFILE
-    echo ' timeout: 5' >> $MSFDFILE
+    ./opt/metasploit-framework/msfdb
 }
 
 #function to install dependencies
@@ -60,9 +52,12 @@ function installmsf ()
   createdb -O msf msf -h localhost
 
   echo -e "${GREENIN} Cloning the metasploit-framework...${GREENOUT}"
-  cd /usr/local/share
+  cd /opt
   git clone https://github.com/rapid7/metasploit-framework
   cd metasploit-framework
+  git clone https://github.com/thecarterb/msfdb-copy
+  mv msfdb-copy/msfdb .
+  rm -rf msfdb-copy
   for MSF in $(ls msf*); do ln -s /usr/local/share/metasploit-framework/$MSF /usr/local/bin/$MSF;done
   sudo chmod go+w /etc/profile
   sudo echo export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml >> /etc/profile
