@@ -19,10 +19,9 @@ echo "on Mac OSX. You can look at the source code here --> https://github.com/th
 
 #globals
 MSFDFILE="/usr/local/share/metasploit-framework/config/database.yml"
-GREENIN="\033[1;32;0m"
-GREENOUT="\033[0m 1;32;0m"
-ENDTEXT="You're all set up! justetype --> \"./metasploit-framework/msfconsole\" (without quotes in " \
-             "the terminal to fire up metasploit!"
+GREENIN="\033[0;32m"
+GREENOUT="\033[0m"
+ENDTEXT="You're all set up! justetype --> \"./metasploit-framework/msfconsole\" (without quotes in the terminal to fire up metasploit!"
 UNAME=`uname`
 
 msfdsetup ()
