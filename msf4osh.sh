@@ -37,11 +37,11 @@ msfdsetup ()
 }
 
 if [ `uname` == "Darwin" ]; then
-  install
+  installmsf
 fi
 
 #function to install dependencies
-install ()
+installmsf ()
 {
   echo -e "${GREENIN} Installing brew package manager...${GREENOUT}"
   /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"
