@@ -36,7 +36,7 @@ msfdsetup ()
     echo ' timeout: 5' >> $MSFDFILE
 }
 
-if [`uname` == "Darwin"]; then
+if [ `uname` == "Darwin" ]; then
   install
 fi
 
