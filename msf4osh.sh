@@ -22,7 +22,6 @@ MSFDFILE="/usr/local/share/metasploit-framework/config/database.yml"
 GREENIN="\033[0;32m"
 GREENOUT="\033[0m"
 ENDTEXT="You're all set up! justetype --> \"./metasploit-framework/msfconsole\" (without quotes in the terminal to fire up metasploit!"
-UNAME=`uname`
 
 msfdsetup ()
 {
@@ -37,7 +36,7 @@ msfdsetup ()
     echo ' timeout: 5' >> $MSFDFILE
 }
 
-if [$UNAME == "Darwin"]; then
+if [`uname` == "Darwin"]; then
   install
 fi
 
